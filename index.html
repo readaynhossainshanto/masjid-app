@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>হাবিব উল্যা ভূঁইয়া জামে মসজিদ ডিজিটাল ড্যাশবোর্ড</title>
+    
+    <meta name="theme-color" content="#27ae60">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="data:application/json;base64,ewogICJkZWZhdWx0X2xvY2FsZSI6ICJlbiIsCiAgIm5hbWUiOiAiSGFiaWIgVWxsYWggQmh1aXlhbiBNYXNqaWQiLAogICJzaG9ydF9uYW1lIjogIkhVQiBNYXNqaWQiLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI2YwZjJmNSIsCiAgInRoZW1lX2NvbG9yIjogIiMyN2FlNjAiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJodHRwczovL2Nkbi1pY29ucy1wbmcuZmx0aWNvbi5jb20vNTEyLzI4NC8yODQ2MTcucG5nIiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciLAogICAgICAicHVycG9zZSI6ICJhbnkgbWFza2FibGUiCiAgICB9CiAgXQp9">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; padding: 20px; font-size: 13px; margin: 0; }
+        h2 { text-align: center; color: #1a5276; margin-bottom: 5px; }
+        .current-year-display { text-align: center; font-size: 20px; font-weight: bold; color: #27ae60; margin-bottom: 10px; }
+        .header-bar { display: flex; justify-content: space-between; align-items: center; background: white; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .nav-actions { display: flex; align-items: center; gap: 10px; }
+        .search-box { padding: 8px; border: 1px solid #ddd; border-radius: 5px; width: 200px; }
+        .arrow-btn { cursor: pointer; font-size: 20px; color: #3498db; user-select: none; }
+        .dropbtn { background-color: #3498db; color: white; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-size: 13px; font-weight: bold; }
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-content { display: none; position: absolute; right: 0; background-color: white; min-width: 180px; box-shadow: 0px 8px 16px rgba(0,0,0,0.2); z-index: 100; border-radius: 8px; overflow: hidden; }
+        .dropdown-content a, .dropdown-content label { color: #333; padding: 10px 15px; text-decoration: none; display: block; border-bottom: 1px solid #eee; cursor: pointer; }
+        .show { display: block; }
+        
+        table { width: 100%; border-collapse: collapse; background: white; margin-bottom: 20px; }
+        th, td { border: 1px solid #e0e0e0; padding: 8px; text-align: center; }
+        th { background-color: #27ae60; color: white; font-size: 11px; }
+        .house-group-header { background-color: #ecf0f1; text-align: left; padding: 10px; font-size: 16px; font-weight: bold; color: #2c3e50; border: 1px solid #e0e0e0; }
+        
+        .tk-input { width: 45px; padding: 4px; border: 1px solid #ccc; border-radius: 4px; text-align: center; font-weight: bold; }
+        .paid { background-color: #d4edda !important; color: #155724 !important; }
+        .unpaid-red { background-color: #f8d7da !important; }
+        .future-white { background-color: #ffffff !important; }
+        .advance { background-color: #FFD700 !important; color: #000 !important; font-weight: bold; }
+        
+        .status-paid { color: #1e8449; font-weight: bold; }
+        .status-due { color: #a94442; font-weight: bold; }
+        .date-text { font-size: 8px; color: #666; display: block; margin-top: 2px; }
+        .print-only-val { display: none; }
+        .clickable-name { cursor: pointer; color: #1a5276; text-decoration: underline; }
+        .expatriate-tag { background: #e67e22; color: white; font-size: 9px; padding: 1px 4px; border-radius: 4px; margin-left: 4px; }
+        .btn-add { background: #27ae60; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 6px; font-weight: bold; }
+
+        @media print {
+            .header-bar, .tk-input, .btn-add, .arrow-btn, .no-print { display: none !important; }
+            .print-only-val { display: block !important; }
+            .house-section { page-break-before: always; }
+            .house-section:first-child { page-break-before: auto; }
+            @page { size: A4 landscape; margin: 10mm; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="no-print" style="text-align: right; padding: 5px;">
+    <button id="installApp" style="display:none; background:#1a5276; color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">📲 হাবিব উল্যা ভূঁইয়া জামে মসজিদ অ্যাপ ইন্সটল করুন</button>
+</div>
+
+<h2>🕌 হাবিব উল্যা ভূঁইয়া জামে মসজিদ ডিজিটাল ড্যাশবোর্ড</h2>
+<div class="current-year-display">
+    <span class="arrow-btn" onclick="changeYear(-1)">◀</span>
+    বছর: <span id="yearLabel">2025</span>
+    <span class="arrow-btn" onclick="changeYear(1)">▶</span>
+</div>
+
+<div class="header-bar">
+    <div>
+        <button class="btn-add" onclick="addNewEntry()">➕ নতুন দাতা যোগ করুন</button>
+        <label style="margin-left: 15px; font-weight: bold; cursor: pointer;">
+            <input type="checkbox" id="groupByHouse" onchange="renderTable()"> বাড়ি অনুযায়ী তালিকা
+        </label>
+    </div>
+    
+    <input type="text" id="searchInput" class="search-box" placeholder="🔍 নাম বা বাড়ি খুঁজুন..." onkeyup="searchFilter()">
+
+    <div class="nav-actions">
+        <div class="dropdown">
+            <button class="dropbtn" onclick="toggleDropdown('sortMenu')">সাজান ▼</button>
+            <div id="sortMenu" class="dropdown-content">
+                <a onclick="sortTable('name')">🔠 নাম (A-Z)</a>
+                <a onclick="sortTable('expatriate')">✈️ শুধু প্রবাসী</a>
+                <a onclick="sortTable('due')">⏳ শুধু বাকি</a>
+                <a onclick="renderTable(mosqueData)">🔄 সবাই</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="toggleDropdown('sysMenu')">মেনু ☰</button>
+            <div id="sysMenu" class="dropdown-content">
+                <a onclick="window.print()">💾 PDF / প্রিন্ট</a>
+                <a onclick="backupData()">📤 ব্যাকআপ</a>
+                <label for="restoreFile">📥 রিস্টোর</label>
+                <input type="file" id="restoreFile" style="display:none" onchange="restoreData(event)">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="tableContainer"></div>
+
+<script>
+// PWA Installation Logic
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    document.getElementById('installApp').style.display = 'inline-block';
+});
+
+document.getElementById('installApp').addEventListener('click', async () => {
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+            document.getElementById('installApp').style.display = 'none';
+        }
+        deferredPrompt = null;
+    }
+});
+
+let mosqueData = JSON.parse(localStorage.getItem('mosqueStorageV2')) || [];
+let currentYear = new Date().getFullYear();
+const monthNames = ["জানু", "ফেব্রু", "মার্চ", "এপ্রিল", "মে", "জুন", "জুলাই", "আগস্ট", "সেপ্টে", "অক্টো", "নভে", "ডিসে"];
+
+function toggleDropdown(id) {
+    document.querySelectorAll('.dropdown-content').forEach(d => { if(d.id !== id) d.classList.remove('show'); });
+    document.getElementById(id).classList.toggle('show');
+}
+
+function changeYear(step) {
+    currentYear += step;
+    document.getElementById('yearLabel').innerText = currentYear;
+    renderTable();
+}
+
+async function addNewEntry() {
+    const { value: v } = await Swal.fire({
+        title: 'নতুন দাতার তথ্য',
+        html: `
+            <input id="n" class="swal2-input" placeholder="নাম">
+            <input id="h" class="swal2-input" placeholder="বাড়ি">
+            <input id="m" class="swal2-input" placeholder="মোবাইল">
+            <input id="w" class="swal2-input" placeholder="WhatsApp নাম্বার (country code সহ)">
+            <div style="margin-top:10px"><input type="checkbox" id="ex"> প্রবাসী?</div>`,
+        confirmButtonText: 'যোগ',
+        preConfirm: () => [document.getElementById('n').value, document.getElementById('h').value, document.getElementById('m').value, document.getElementById('w').value, document.getElementById('ex').checked]
+    });
+    if (v && v[0]) {
+        mosqueData.push({ 
+            name: v[0], house: v[1] || "অন্যান্য", mobile: v[2] || "", whatsapp: v[3] || "", isExpatriate: v[4],
+            yearlyData: {} 
+        });
+        saveAndRender();
+    }
+}
+
+function searchFilter() {
+    let term = document.getElementById("searchInput").value.toLowerCase();
+    let filtered = mosqueData.filter(p => p.name.toLowerCase().includes(term) || p.house.toLowerCase().includes(term));
+    renderTable(filtered);
+}
+
+function renderTable(dataToDisplay = mosqueData) {
+    const container = document.getElementById("tableContainer");
+    container.innerHTML = "";
+    const isGrouped = document.getElementById("groupByHouse").checked;
+
+    if (isGrouped) {
+        const groups = {};
+        dataToDisplay.forEach(p => {
+            if (!groups[p.house]) groups[p.house] = [];
+            groups[p.house].push(p);
+        });
+        for (let house in groups) {
+            let section = document.createElement("div");
+            section.className = "house-section";
+            section.innerHTML = `<div class="house-group-header">🏠 বাড়ির নাম: ${house}</div>`;
+            section.appendChild(createBaseTable(groups[house]));
+            container.appendChild(section);
+        }
+    } else {
+        container.appendChild(createBaseTable(dataToDisplay));
+    }
+}
+
+function createBaseTable(dataList) {
+    const table = document.createElement("table");
+    table.innerHTML = `<thead><tr><th style="width:160px;">নাম</th><th style="width:100px;">বাড়ি</th><th>জানু</th><th>ফেব্রু</th><th>মার্চ</th><th>এপ্রিল</th><th>মে</th><th>জুন</th><th>জুলাই</th><th>আগস্ট</th><th>সেপ্টে</th><th>অক্টো</th><th>নভে</th><th>ডিসে</th><th>মোট</th><th>অবস্থা</th></tr></thead><tbody></tbody>`;
+    const tbody = table.querySelector("tbody");
+    const now = new Date();
+    const realYear = now.getFullYear();
+    const realMonth = now.getMonth();
+
+    dataList.forEach((p) => {
+        let pIdx = mosqueData.indexOf(p);
+        let yearData = getYearlyData(p, currentYear);
+        let row = tbody.insertRow();
+        
+        let nameHTML = `<span class="clickable-name" onclick="openProfile(${pIdx})"><strong>${p.name}</strong></span>`;
+        if(p.isExpatriate) nameHTML += `<span class="expatriate-tag">প্রবাসী</span>`;
+        row.insertCell(0).innerHTML = nameHTML;
+        row.insertCell(1).innerText = p.house;
+
+        let rowTotal = 0;
+        let dueCount = 0;
+
+        for (let i = 0; i < 12; i++) {
+            let val = yearData.payments[i];
+            let date = yearData.dates[i] || "";
+            rowTotal += parseFloat(val) || 0;
+            let cell = row.insertCell(i + 2);
+            
+            if (val > 0) {
+                cell.className = (currentYear > realYear || (currentYear === realYear && i > realMonth)) ? "advance" : "paid";
+            } else {
+                if (currentYear < realYear || (currentYear === realYear && i <= realMonth)) {
+                    cell.className = "unpaid-red";
+                    dueCount++;
+                } else {
+                    cell.className = "future-white";
+                }
+            }
+            cell.innerHTML = `
+                <input type="number" class="tk-input" value="${val || ''}" onchange="updatePay(${pIdx},${i},this.value)">
+                <span class="print-only-val">${val > 0 ? val : '-'}</span>
+                <span class="date-text">${date}</span>
+            `;
+        }
+        row.insertCell(14).innerHTML = `<strong>${rowTotal}</strong>`;
+        row.insertCell(15).innerHTML = dueCount === 0 ? `<span class="status-paid">পরিশোধ</span>` : `<span class="status-due">${dueCount} মাস বাকি</span>`;
+    });
+    return table;
+}
+
+function getYearlyData(person, year) {
+    if (!person.yearlyData[year]) person.yearlyData[year] = { payments: Array(12).fill(0), dates: Array(12).fill("") };
+    return person.yearlyData[year];
+}
+
+function updatePay(pIdx, mIdx, val) {
+    val = parseFloat(val) || 0;
+    let yearData = getYearlyData(mosqueData[pIdx], currentYear);
+    yearData.payments[mIdx] = val;
+    yearData.dates[mIdx] = val > 0 ? new Date().toLocaleDateString('bn-BD') : "";
+    saveAndRender();
+}
+
+function sortTable(type) {
+    let filtered = [...mosqueData];
+    if (type === 'name') filtered.sort((a,b) => a.name.localeCompare(b.name, 'bn'));
+    else if (type === 'expatriate') filtered = mosqueData.filter(p => p.isExpatriate);
+    else if (type === 'due') {
+        const now = new Date();
+        filtered = mosqueData.filter(p => {
+            let yd = getYearlyData(p, now.getFullYear());
+            return yd.payments[now.getMonth()] <= 0;
+        });
+    }
+    renderTable(filtered);
+}
+
+function openProfile(index) {
+    const p = mosqueData[index];
+    const yearData = getYearlyData(p, currentYear);
+    let historyHTML = '';
+    yearData.payments.forEach((val, i) => {
+        historyHTML += `<tr><td>${monthNames[i]}</td><td>${val > 0 ? val + ' ৳' : '-'}</td><td>${yearData.dates[i] || '-'}</td></tr>`;
+    });
+
+    Swal.fire({
+        width: '500px',
+        html: `
+            <div id="printableProfile" style="text-align:left; padding:10px; border:1px solid #ddd; border-radius:10px;">
+                <h3 style="color:#27ae60; border-bottom:2px solid #27ae60;">🕌 হাবিব উল্যা ভূঁইয়া জামে মসজিদ দাতা প্রোফাইল (${currentYear})</h3>
+                <p><strong>নাম:</strong> ${p.name} ${p.isExpatriate ? '(প্রবাসী)' : ''}</p>
+                <p><strong>বাড়ি:</strong> ${p.house}</p>
+                <p><strong>কল:</strong> <a href="tel:${p.mobile}" style="color:#3498db;">${p.mobile || 'নেই'}</a></p>
+                <p><strong>WhatsApp:</strong> <a href="https://wa.me/${p.whatsapp}" target="_blank" style="color:#25D366;">${p.whatsapp || 'নেই'}</a></p>
+                
+                <div style="margin:15px 0;" class="no-print">
+                    <button class="dropbtn" onclick="editEntry(${index})">📝 এডিট</button>
+                    <button class="dropbtn" style="background:#e67e22;" onclick="downloadProfile()">📥 ডাউনলোড / শেয়ার</button>
+                </div>
+
+                <table border="1" style="width:100%; border-collapse:collapse; font-size:12px;">
+                    <tr style="background:#eee;"><th>মাস</th><th>টাকা</th><th>তারিখ</th></tr>
+                    ${historyHTML}
+                </table>
+            </div>`,
+        showConfirmButton: false
+    });
+}
+
+function downloadProfile() {
+    const printContents = document.getElementById("printableProfile").innerHTML;
+    const printWindow = window.open('', '', 'height=600,width=800');
+    printWindow.document.write('<html><head><title>হাবিব উল্যা ভূঁইয়া জামে মসজিদ দাতা প্রোফাইল</title><style>body{font-family:sans-serif;} table{width:100%; border-collapse:collapse;} th,td{border:1px solid #ddd; padding:8px; text-align:center;} .no-print{display:none;}</style></head><body>');
+    printWindow.document.write(printContents);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    printWindow.print();
+}
+
+async function editEntry(index) {
+    const p = mosqueData[index];
+    Swal.close();
+    const { value: v } = await Swal.fire({
+        title: 'তথ্য পরিবর্তন',
+        html: `
+            <input id="en" class="swal2-input" placeholder="নাম" value="${p.name}">
+            <input id="eh" class="swal2-input" placeholder="বাড়ি" value="${p.house}">
+            <input id="em" class="swal2-input" placeholder="মোবাইল" value="${p.mobile || ''}">
+            <input id="ew" class="swal2-input" placeholder="WhatsApp" value="${p.whatsapp || ''}">
+            <div style="margin-top:10px"><input type="checkbox" id="eex" ${p.isExpatriate ? 'checked' : ''}> প্রবাসী?</div>`,
+        showCancelButton: true,
+        confirmButtonText: 'সেভ',
+        preConfirm: () => [document.getElementById('en').value, document.getElementById('eh').value, document.getElementById('em').value, document.getElementById('ew').value, document.getElementById('eex').checked]
+    });
+    if (v) {
+        p.name = v[0]; p.house = v[1]; p.mobile = v[2]; p.whatsapp = v[3]; p.isExpatriate = v[4];
+        saveAndRender();
+        openProfile(index);
+    }
+}
+
+function saveAndRender() { localStorage.setItem('mosqueStorageV2', JSON.stringify(mosqueData)); renderTable(); }
+function backupData() { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(mosqueData)], {type: 'application/json'})); a.download = `HUB_Masjid_Backup.json`; a.click(); }
+function restoreData(e) { const r = new FileReader(); r.onload = (ev) => { mosqueData = JSON.parse(ev.target.result); saveAndRender(); }; r.readAsText(e.target.files[0]); }
+
+window.onload = () => renderTable();
+</script>
+</body>
+</html>
