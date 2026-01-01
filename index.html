@@ -7,70 +7,66 @@
     
     <meta name="theme-color" content="#27ae60">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="manifest" href="data:application/json;base64,ewogICJkZWZhdWx0X2xvY2FsZSI6ICJlbiIsCiAgIm5hbWUiOiAiSGFiaWIgVWxsYWggQmh1aXlhbiBNYXNqaWQiLAogICJzaG9ydF9uYW1lIjogIkhVQiBNYXNqaWQiLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI2YwZjJmNSIsCiAgInRoZW1lX2NvbG9yIjogIiMyN2FlNjAiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJodHRwczovL2Nkbi1pY29ucy1wbmcuZmx0aWNvbi5jb20vNTEyLzI4NC8yODQ2MTcucG5nIiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciLAogICAgICAicHVycG9zZSI6ICJhbnkgbWFza2FibGUiCiAgICB9CiAgXQp9">
+    <link rel="manifest" href="data:application/json;base64,ewogICJkZWZhdWx0X2xvY2FsZSI6ICJlbiIsCiAgIm5hbWUiOiAiSGFiaWIgVWxsYWggQmh1aXlhbiBNYXNqaWQiLAogICJzaG9ydF9uYW1lIjogIkhVQiBNYXNqaWQiLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI2YwZjJmNSIsCiAgInRoZW1lX2NvbG9yIjogIiMyN2FlNjAiLAogICJpY29ucyI6IFs7InNyYyI6ICJodHRwczovL2Nkbi1pY29ucy1wbmcuZmx0aWNvbi5jb20vNTEyLzI4NC8yODQ2MTcucG5nIiwic2l6ZXMiOiAiNTEyeDUxMiIsInR5cGUiOiAiaW1hZ2UvcG5nIn1dCn0=">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; padding: 20px; font-size: 13px; margin: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; padding: 15px; font-size: 13px; margin: 0; }
         h2 { text-align: center; color: #1a5276; margin-bottom: 5px; }
         .current-year-display { text-align: center; font-size: 20px; font-weight: bold; color: #27ae60; margin-bottom: 10px; }
-        .header-bar { display: flex; justify-content: space-between; align-items: center; background: white; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
-        .nav-actions { display: flex; align-items: center; gap: 10px; }
-        .search-box { padding: 8px; border: 1px solid #ddd; border-radius: 5px; width: 200px; }
+        .header-bar { display: flex; justify-content: space-between; align-items: center; background: white; padding: 10px 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .nav-actions { display: flex; align-items: center; gap: 8px; }
+        .search-box { padding: 8px; border: 1px solid #ddd; border-radius: 5px; width: 180px; }
         .arrow-btn { cursor: pointer; font-size: 20px; color: #3498db; user-select: none; }
-        .dropbtn { background-color: #3498db; color: white; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-size: 13px; font-weight: bold; }
+        .dropbtn { background-color: #3498db; color: white; padding: 8px 12px; border: none; border-radius: 5px; cursor: pointer; font-size: 12px; font-weight: bold; }
         .dropdown { position: relative; display: inline-block; }
-        .dropdown-content { display: none; position: absolute; right: 0; background-color: white; min-width: 180px; box-shadow: 0px 8px 16px rgba(0,0,0,0.2); z-index: 100; border-radius: 8px; overflow: hidden; }
+        .dropdown-content { display: none; position: absolute; right: 0; background-color: white; min-width: 160px; box-shadow: 0px 8px 16px rgba(0,0,0,0.2); z-index: 100; border-radius: 8px; overflow: hidden; }
         .dropdown-content a, .dropdown-content label { color: #333; padding: 10px 15px; text-decoration: none; display: block; border-bottom: 1px solid #eee; cursor: pointer; }
         .show { display: block; }
         
-        table { width: 100%; border-collapse: collapse; background: white; margin-bottom: 20px; }
-        th, td { border: 1px solid #e0e0e0; padding: 8px; text-align: center; }
-        th { background-color: #27ae60; color: white; font-size: 11px; }
-        .house-group-header { background-color: #ecf0f1; text-align: left; padding: 10px; font-size: 16px; font-weight: bold; color: #2c3e50; border: 1px solid #e0e0e0; }
+        table { width: 100%; border-collapse: collapse; background: white; margin-bottom: 10px; border-radius: 8px; overflow: hidden; }
+        th, td { border: 1px solid #e0e0e0; padding: 6px; text-align: center; }
+        th { background-color: #27ae60; color: white; font-size: 11px; white-space: nowrap; }
+        .house-group-header { background-color: #ecf0f1; text-align: left; padding: 10px; font-size: 15px; font-weight: bold; color: #2c3e50; border: 1px solid #e0e0e0; }
         
-        .tk-input { width: 45px; padding: 4px; border: 1px solid #ccc; border-radius: 4px; text-align: center; font-weight: bold; }
+        .tk-input { width: 42px; padding: 4px; border: 1px solid #ccc; border-radius: 4px; text-align: center; font-weight: bold; font-size: 12px; }
+        .beton-input { width: 55px; padding: 4px; border: 1px solid #3498db; border-radius: 4px; text-align: center; font-weight: bold; background: #f7fbff; }
         .paid { background-color: #d4edda !important; color: #155724 !important; }
         .unpaid-red { background-color: #f8d7da !important; }
-        .future-white { background-color: #ffffff !important; }
         .advance { background-color: #FFD700 !important; color: #000 !important; font-weight: bold; }
+        .total-row { background-color: #f9f9f9; font-weight: bold; cursor: pointer; color: #1a5276; }
         
-        .status-paid { color: #1e8449; font-weight: bold; }
-        .status-due { color: #a94442; font-weight: bold; }
-        .date-text { font-size: 8px; color: #666; display: block; margin-top: 2px; }
-        .print-only-val { display: none; }
-        .clickable-name { cursor: pointer; color: #1a5276; text-decoration: underline; }
+        .clickable-name { cursor: pointer; color: #1a5276; text-decoration: underline; font-weight: bold; }
         .expatriate-tag { background: #e67e22; color: white; font-size: 9px; padding: 1px 4px; border-radius: 4px; margin-left: 4px; }
-        .btn-add { background: #27ae60; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 6px; font-weight: bold; }
+        .status-badge { padding: 3px 8px; border-radius: 12px; font-size: 10px; font-weight: bold; display: inline-block; }
+        .btn-add { background: #27ae60; color: white; padding: 9px 15px; border: none; cursor: pointer; border-radius: 6px; font-weight: bold; font-size: 12px; }
 
         @media print {
-            .header-bar, .tk-input, .btn-add, .arrow-btn, .no-print { display: none !important; }
-            .print-only-val { display: block !important; }
+            .header-bar, .tk-input, .beton-input, .btn-add, .arrow-btn, .no-print { display: none !important; }
             .house-section { page-break-before: always; }
-            .house-section:first-child { page-break-before: auto; }
-            @page { size: A4 landscape; margin: 10mm; }
+            @page { size: A4 landscape; margin: 5mm; }
         }
     </style>
 </head>
 <body>
 
 <div class="no-print" style="text-align: right; padding: 5px;">
-    <button id="installApp" style="display:none; background:#1a5276; color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">📲 হাবিব উল্যা ভূঁইয়া জামে মসজিদ অ্যাপ ইন্সটল করুন</button>
+    <button id="installApp" style="display:none; background:#1a5276; color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer; font-size: 11px;">📲 অ্যাপ ইন্সটল করুন</button>
 </div>
 
-<h2>🕌 হাবিব উল্যা ভূঁইয়া জামে মসজিদ ডিজিটাল ড্যাশবোর্ড</h2>
+<h2>🕌 হাবিব উল্যা ভূঁইয়া জামে মসজিদ</h2>
 <div class="current-year-display">
     <span class="arrow-btn" onclick="changeYear(-1)">◀</span>
-    বছর: <span id="yearLabel">2025</span>
+    বছর: <span id="yearLabel">২০২৫</span>
     <span class="arrow-btn" onclick="changeYear(1)">▶</span>
 </div>
 
 <div class="header-bar">
     <div>
-        <button class="btn-add" onclick="addNewEntry()">➕ নতুন দাতা যোগ করুন</button>
-        <label style="margin-left: 15px; font-weight: bold; cursor: pointer;">
-            <input type="checkbox" id="groupByHouse" onchange="renderTable()"> বাড়ি অনুযায়ী তালিকা
+        <button class="btn-add" onclick="addNewEntry()">➕ নতুন দাতা</button>
+        <button class="dropbtn" id="contactModeBtn" onclick="toggleContactMode()" style="background:#8e44ad; margin-left:5px;">📱 কন্টাক্ট মোড</button>
+        <label style="margin-left: 10px; font-weight: bold; cursor: pointer; font-size: 11px;">
+            <input type="checkbox" id="groupByHouse" onchange="renderTable()"> বাড়ি অনুযায়ী
         </label>
     </div>
     
@@ -80,7 +76,7 @@
         <div class="dropdown">
             <button class="dropbtn" onclick="toggleDropdown('sortMenu')">সাজান ▼</button>
             <div id="sortMenu" class="dropdown-content">
-                <a onclick="sortTable('name')">🔠 নাম (A-Z)</a>
+                <a onclick="sortTable('name')">🔠 নাম (অ-হ)</a>
                 <a onclick="sortTable('expatriate')">✈️ শুধু প্রবাসী</a>
                 <a onclick="sortTable('due')">⏳ শুধু বাকি</a>
                 <a onclick="renderTable(mosqueData)">🔄 সবাই</a>
@@ -101,28 +97,16 @@
 <div id="tableContainer"></div>
 
 <script>
-// PWA Installation Logic
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    document.getElementById('installApp').style.display = 'inline-block';
-});
-
-document.getElementById('installApp').addEventListener('click', async () => {
-    if (deferredPrompt) {
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        if (outcome === 'accepted') {
-            document.getElementById('installApp').style.display = 'none';
-        }
-        deferredPrompt = null;
-    }
-});
-
 let mosqueData = JSON.parse(localStorage.getItem('mosqueStorageV2')) || [];
 let currentYear = new Date().getFullYear();
+let isContactMode = false;
 const monthNames = ["জানু", "ফেব্রু", "মার্চ", "এপ্রিল", "মে", "জুন", "জুলাই", "আগস্ট", "সেপ্টে", "অক্টো", "নভে", "ডিসে"];
+
+function toBanglaNum(num) {
+    if (num === undefined || num === null) return '০';
+    const banglaDigits = {'0':'০','1':'১','2':'২','3':'৩','4':'৪','5':'৫','6':'৬','7':'৭','8':'৮','9':'৯'};
+    return num.toString().replace(/[0-9]/g, w => banglaDigits[w]);
+}
 
 function toggleDropdown(id) {
     document.querySelectorAll('.dropdown-content').forEach(d => { if(d.id !== id) d.classList.remove('show'); });
@@ -131,48 +115,36 @@ function toggleDropdown(id) {
 
 function changeYear(step) {
     currentYear += step;
-    document.getElementById('yearLabel').innerText = currentYear;
+    document.getElementById('yearLabel').innerText = toBanglaNum(currentYear);
+    renderTable();
+}
+
+function toggleContactMode() {
+    isContactMode = !isContactMode;
+    document.getElementById('contactModeBtn').innerText = isContactMode ? "💰 টাকার হিসাব" : "📱 কন্টাক্ট মোড";
     renderTable();
 }
 
 async function addNewEntry() {
     const { value: v } = await Swal.fire({
         title: 'নতুন দাতার তথ্য',
-        html: `
-            <input id="n" class="swal2-input" placeholder="নাম">
-            <input id="h" class="swal2-input" placeholder="বাড়ি">
-            <input id="m" class="swal2-input" placeholder="মোবাইল">
-            <input id="w" class="swal2-input" placeholder="WhatsApp নাম্বার (country code সহ)">
-            <div style="margin-top:10px"><input type="checkbox" id="ex"> প্রবাসী?</div>`,
+        html: `<input id="n" class="swal2-input" placeholder="নাম"><input id="h" class="swal2-input" placeholder="বাড়ি"><input id="m" class="swal2-input" placeholder="মোবাইল"><input id="w" class="swal2-input" placeholder="WhatsApp (কোডসহ)"><input id="b" class="swal2-input" placeholder="ধার্য বেতন (টাকা)" type="number"><div style="margin-top:10px"><input type="checkbox" id="ex"> প্রবাসী?</div>`,
         confirmButtonText: 'যোগ',
-        preConfirm: () => [document.getElementById('n').value, document.getElementById('h').value, document.getElementById('m').value, document.getElementById('w').value, document.getElementById('ex').checked]
+        preConfirm: () => [document.getElementById('n').value, document.getElementById('h').value, document.getElementById('m').value, document.getElementById('w').value, document.getElementById('b').value, document.getElementById('ex').checked]
     });
     if (v && v[0]) {
-        mosqueData.push({ 
-            name: v[0], house: v[1] || "অন্যান্য", mobile: v[2] || "", whatsapp: v[3] || "", isExpatriate: v[4],
-            yearlyData: {} 
-        });
+        mosqueData.push({ name: v[0], house: v[1] || "অন্যান্য", mobile: v[2] || "", whatsapp: v[3] || "", monthlyBeton: v[4] || 0, isExpatriate: v[5], yearlyData: {} });
         saveAndRender();
     }
-}
-
-function searchFilter() {
-    let term = document.getElementById("searchInput").value.toLowerCase();
-    let filtered = mosqueData.filter(p => p.name.toLowerCase().includes(term) || p.house.toLowerCase().includes(term));
-    renderTable(filtered);
 }
 
 function renderTable(dataToDisplay = mosqueData) {
     const container = document.getElementById("tableContainer");
     container.innerHTML = "";
     const isGrouped = document.getElementById("groupByHouse").checked;
-
     if (isGrouped) {
         const groups = {};
-        dataToDisplay.forEach(p => {
-            if (!groups[p.house]) groups[p.house] = [];
-            groups[p.house].push(p);
-        });
+        dataToDisplay.forEach(p => { if (!groups[p.house]) groups[p.house] = []; groups[p.house].push(p); });
         for (let house in groups) {
             let section = document.createElement("div");
             section.className = "house-section";
@@ -180,108 +152,164 @@ function renderTable(dataToDisplay = mosqueData) {
             section.appendChild(createBaseTable(groups[house]));
             container.appendChild(section);
         }
-    } else {
-        container.appendChild(createBaseTable(dataToDisplay));
-    }
+    } else { container.appendChild(createBaseTable(dataToDisplay)); }
 }
 
 function createBaseTable(dataList) {
     const table = document.createElement("table");
-    table.innerHTML = `<thead><tr><th style="width:160px;">নাম</th><th style="width:100px;">বাড়ি</th><th>জানু</th><th>ফেব্রু</th><th>মার্চ</th><th>এপ্রিল</th><th>মে</th><th>জুন</th><th>জুলাই</th><th>আগস্ট</th><th>সেপ্টে</th><th>অক্টো</th><th>নভে</th><th>ডিসে</th><th>মোট</th><th>অবস্থা</th></tr></thead><tbody></tbody>`;
-    const tbody = table.querySelector("tbody");
     const now = new Date();
     const realYear = now.getFullYear();
     const realMonth = now.getMonth();
+    
+    let headerHTML = isContactMode ? `<tr><th>নং</th><th>নাম</th><th>বাড়ি</th><th>মোবাইল</th><th>WhatsApp</th><th>অবস্থা</th></tr>` : 
+        `<tr><th>নং</th><th>নাম</th><th>বাড়ি</th><th>ধার্য</th>${monthNames.map(m => `<th>${m}</th>`).join('')}<th>মোট আদায়</th><th>মোট বাকি</th><th>অবস্থা</th></tr>`;
+    table.innerHTML = `<thead>${headerHTML}</thead><tbody></tbody>`;
+    const tbody = table.querySelector("tbody");
 
-    dataList.forEach((p) => {
+    let monthlyTotals = Array(12).fill(0);
+
+    dataList.forEach((p, index) => {
         let pIdx = mosqueData.indexOf(p);
         let yearData = getYearlyData(p, currentYear);
         let row = tbody.insertRow();
         
-        let nameHTML = `<span class="clickable-name" onclick="openProfile(${pIdx})"><strong>${p.name}</strong></span>`;
-        if(p.isExpatriate) nameHTML += `<span class="expatriate-tag">প্রবাসী</span>`;
-        row.insertCell(0).innerHTML = nameHTML;
-        row.insertCell(1).innerText = p.house;
+        row.insertCell(0).innerText = toBanglaNum(index + 1);
+        
+        let nameHTML = `<span class="clickable-name" onclick="openProfile(${pIdx})">${p.name}</span>`;
+        if(p.isExpatriate) nameHTML += `<span class="expatriate-tag">প্র</span>`;
+        row.insertCell(1).innerHTML = nameHTML;
+        row.insertCell(2).innerText = p.house;
 
-        let rowTotal = 0;
-        let dueCount = 0;
+        let curDueCount = 0;
+        let yearlyTotalPaid = 0;
+        let yearlyTotalDue = 0;
 
-        for (let i = 0; i < 12; i++) {
-            let val = yearData.payments[i];
-            let date = yearData.dates[i] || "";
-            rowTotal += parseFloat(val) || 0;
-            let cell = row.insertCell(i + 2);
-            
-            if (val > 0) {
-                cell.className = (currentYear > realYear || (currentYear === realYear && i > realMonth)) ? "advance" : "paid";
-            } else {
-                if (currentYear < realYear || (currentYear === realYear && i <= realMonth)) {
-                    cell.className = "unpaid-red";
-                    dueCount++;
-                } else {
-                    cell.className = "future-white";
+        if (isContactMode) {
+            row.insertCell(3).innerHTML = `<a href="tel:${p.mobile}">${toBanglaNum(p.mobile || 'নেই')}</a>`;
+            row.insertCell(4).innerHTML = `<a href="https://wa.me/${p.whatsapp}" target="_blank" style="color:#25D366; font-weight:bold;">হোয়াটসঅ্যাপ</a>`;
+            // Calculate due for contact mode status
+            let pRealData = getYearlyData(p, realYear);
+            for (let i=0; i<=realMonth; i++) { if (pRealData.payments[i] <= 0) curDueCount++; }
+        } else {
+            row.insertCell(3).innerHTML = `<input type="number" class="beton-input" value="${p.monthlyBeton || ''}" onchange="updateBeton(${pIdx}, this.value)">`;
+            for (let i = 0; i < 12; i++) {
+                let val = parseFloat(yearData.payments[i]) || 0;
+                monthlyTotals[i] += val;
+                yearlyTotalPaid += val;
+                
+                let cell = row.insertCell(i + 4);
+                if (val > 0) {
+                    if (currentYear > realYear || (currentYear === realYear && i > realMonth)) cell.className = "advance";
+                    else cell.className = "paid";
+                } else if (currentYear < realYear || (currentYear === realYear && i <= realMonth)) { 
+                    cell.className = "unpaid-red"; 
+                    curDueCount++;
+                    yearlyTotalDue += (parseFloat(p.monthlyBeton) || 0);
                 }
+                cell.innerHTML = `<input type="number" class="tk-input" value="${val || ''}" onchange="updatePay(${pIdx},${i},this.value)">`;
             }
-            cell.innerHTML = `
-                <input type="number" class="tk-input" value="${val || ''}" onchange="updatePay(${pIdx},${i},this.value)">
-                <span class="print-only-val">${val > 0 ? val : '-'}</span>
-                <span class="date-text">${date}</span>
-            `;
+            row.insertCell(16).innerHTML = `<strong>${toBanglaNum(yearlyTotalPaid)}</strong>`;
+            row.insertCell(17).innerHTML = `<strong style="color:#d32f2f;">${toBanglaNum(yearlyTotalDue)}</strong>`;
         }
-        row.insertCell(14).innerHTML = `<strong>${rowTotal}</strong>`;
-        row.insertCell(15).innerHTML = dueCount === 0 ? `<span class="status-paid">পরিশোধ</span>` : `<span class="status-due">${dueCount} মাস বাকি</span>`;
+
+        let statusCell = row.insertCell(isContactMode ? 5 : 18);
+        if (curDueCount > 0) statusCell.innerHTML = `<span class="status-badge" style="background:#f8d7da; color:#721c24;">${toBanglaNum(curDueCount)} বাকি</span>`;
+        else statusCell.innerHTML = `<span class="status-badge" style="background:#d4edda; color:#155724;">পরিশোধ</span>`;
     });
+
+    if (!isContactMode) {
+        let tRow = tbody.insertRow();
+        tRow.className = "total-row";
+        tRow.innerHTML = `<td colspan="4">মাসিক মোট:</td>${monthlyTotals.map((t, idx) => `<td onclick="showMonthlyReport(${idx}, ${JSON.stringify(dataList).replace(/"/g, '&quot;')})">${toBanglaNum(t)}</td>`).join('')}<td colspan="3">📊</td>`;
+    }
     return table;
 }
 
-function getYearlyData(person, year) {
-    if (!person.yearlyData[year]) person.yearlyData[year] = { payments: Array(12).fill(0), dates: Array(12).fill("") };
-    return person.yearlyData[year];
-}
+function getYearlyData(p, y) { if (!p.yearlyData[y]) p.yearlyData[y] = { payments: Array(12).fill(0), dates: Array(12).fill("") }; return p.yearlyData[y]; }
 
-function updatePay(pIdx, mIdx, val) {
+function updatePay(pIdx, mIdx, val) { 
     val = parseFloat(val) || 0;
-    let yearData = getYearlyData(mosqueData[pIdx], currentYear);
-    yearData.payments[mIdx] = val;
-    yearData.dates[mIdx] = val > 0 ? new Date().toLocaleDateString('bn-BD') : "";
-    saveAndRender();
+    let yd = getYearlyData(mosqueData[pIdx], currentYear);
+    yd.payments[mIdx] = val;
+    yd.dates[mIdx] = val > 0 ? new Date().toLocaleDateString('bn-BD') : "";
+    saveAndRender(); 
 }
 
-function sortTable(type) {
-    let filtered = [...mosqueData];
-    if (type === 'name') filtered.sort((a,b) => a.name.localeCompare(b.name, 'bn'));
-    else if (type === 'expatriate') filtered = mosqueData.filter(p => p.isExpatriate);
-    else if (type === 'due') {
-        const now = new Date();
-        filtered = mosqueData.filter(p => {
-            let yd = getYearlyData(p, now.getFullYear());
-            return yd.payments[now.getMonth()] <= 0;
+function updateBeton(pIdx, val) { mosqueData[pIdx].monthlyBeton = parseFloat(val) || 0; saveAndRender(); }
+
+function showMonthlyReport(monthIdx, dataList) {
+    let listHTML = '';
+    let total = 0;
+    dataList.forEach((p, idx) => {
+        let val = getYearlyData(p, currentYear).payments[monthIdx];
+        if (val > 0) {
+            total += val;
+            listHTML += `<tr><td>${toBanglaNum(idx+1)}</td><td>${p.name}</td><td>${p.house}</td><td>${toBanglaNum(val)} ৳</td></tr>`;
+        }
+    });
+    Swal.fire({
+        title: `${monthNames[monthIdx]} মাসের আদায়ের রিপোর্ট`,
+        html: `<table border="1" style="width:100%; border-collapse:collapse;">
+                <tr style="background:#eee;"><th>নং</th><th>নাম</th><th>বাড়ি</th><th>টাকা</th></tr>
+                ${listHTML || '<tr><td colspan="4">কোনো আদায় হয়নি</td></tr>'}
+                <tr style="font-weight:bold; background:#f0f0f0;"><td colspan="3">সর্বমোট:</td><td>${toBanglaNum(total)} ৳</td></tr>
+               </table>`,
+        confirmButtonText: 'বন্ধ করুন'
+    });
+}
+
+async function openProfile(idx) {
+    const p = mosqueData[idx];
+    const yd = getYearlyData(p, currentYear);
+    const now = new Date();
+    const realYear = now.getFullYear();
+    const realMonth = now.getMonth();
+    
+    let dueCount = 0, advCount = 0;
+    if (currentYear === realYear) {
+        yd.payments.forEach((v, i) => {
+            if (i <= realMonth && v <= 0) dueCount++;
+            if (i > realMonth && v > 0) advCount++;
         });
+    } else if (currentYear < realYear) {
+        yd.payments.forEach(v => { if (v <= 0) dueCount++; });
+    } else {
+        yd.payments.forEach(v => { if (v > 0) advCount++; });
     }
-    renderTable(filtered);
-}
 
-function openProfile(index) {
-    const p = mosqueData[index];
-    const yearData = getYearlyData(p, currentYear);
+    let statusMsg = "";
+    if (dueCount > 0) {
+        statusMsg = `<p style="color:#d32f2f; font-weight:bold; font-size:14px;">⚠️ ${toBanglaNum(currentYear)} সালে আপনার ${toBanglaNum(dueCount)} মাস বাকি।</p>`;
+    } else if (advCount > 0) {
+        statusMsg = `<p style="color:#2e7d32; font-weight:bold; font-size:14px;">✅ আলহামদুলিল্লাহ! আপনি ${toBanglaNum(advCount)} মাসের অগ্রিম দিয়েছেন। জাজাকাল্লাহু খাইরান।</p>`;
+    } else {
+        statusMsg = `<p style="color:#2e7d32; font-weight:bold; font-size:14px;">✨ আলহামদুলিল্লাহ! আপনি বর্তমান মাস পর্যন্ত সব পরিশোধ করেছেন। জাজাকাল্লাহু খাইরান।</p>`;
+    }
+
     let historyHTML = '';
-    yearData.payments.forEach((val, i) => {
-        historyHTML += `<tr><td>${monthNames[i]}</td><td>${val > 0 ? val + ' ৳' : '-'}</td><td>${yearData.dates[i] || '-'}</td></tr>`;
+    yd.payments.forEach((val, i) => {
+        historyHTML += `<tr><td>${monthNames[i]}</td><td>${val > 0 ? toBanglaNum(val) + ' ৳' : '-'}</td><td>${yd.dates[i] || '-'}</td></tr>`;
     });
 
     Swal.fire({
         width: '500px',
         html: `
             <div id="printableProfile" style="text-align:left; padding:10px; border:1px solid #ddd; border-radius:10px;">
-                <h3 style="color:#27ae60; border-bottom:2px solid #27ae60;">🕌 হাবিব উল্যা ভূঁইয়া জামে মসজিদ দাতা প্রোফাইল (${currentYear})</h3>
-                <p><strong>নাম:</strong> ${p.name} ${p.isExpatriate ? '(প্রবাসী)' : ''}</p>
-                <p><strong>বাড়ি:</strong> ${p.house}</p>
-                <p><strong>কল:</strong> <a href="tel:${p.mobile}" style="color:#3498db;">${p.mobile || 'নেই'}</a></p>
-                <p><strong>WhatsApp:</strong> <a href="https://wa.me/${p.whatsapp}" target="_blank" style="color:#25D366;">${p.whatsapp || 'নেই'}</a></p>
+                <h3 style="color:#27ae60; border-bottom:2px solid #27ae60; padding-bottom:5px;">🕌 হাবিব উল্যা ভূঁইয়া জামে মসজিদ দাতা প্রোফাইল (${toBanglaNum(currentYear)})</h3>
+                <div style="margin-bottom:15px;">
+                    <p><strong>নাম:</strong> ${p.name} ${p.isExpatriate ? '<span style="color:#e67e22; font-size:12px;">(প্র)</span>' : ''}</p>
+                    <p><strong>বাড়ি:</strong> ${p.house} | <strong>ধার্য:</strong> ${toBanglaNum(p.monthlyBeton)} ৳</p>
+                    <p><strong>WhatsApp:</strong> <a href="https://wa.me/${p.whatsapp}" target="_blank" style="color:#25D366; text-decoration:none;">${toBanglaNum(p.whatsapp) || 'নেই'}</a></p>
+                </div>
                 
-                <div style="margin:15px 0;" class="no-print">
-                    <button class="dropbtn" onclick="editEntry(${index})">📝 এডিট</button>
+                <div style="background:#f9f9f9; padding:10px; border-radius:8px; text-align:center; margin-bottom:15px; border:1px solid #eee;">
+                    ${statusMsg}
+                </div>
+
+                <div style="margin-bottom:15px;" class="no-print">
+                    <button class="dropbtn" onclick="editEntry(${idx})">📝 এডিট</button>
                     <button class="dropbtn" style="background:#e67e22;" onclick="downloadProfile()">📥 ডাউনলোড / শেয়ার</button>
+                    <button class="dropbtn" style="background:#e74c3c;" onclick="deleteEntry(${idx})">🗑️ ডিলিট</button>
                 </div>
 
                 <table border="1" style="width:100%; border-collapse:collapse; font-size:12px;">
@@ -296,40 +324,63 @@ function openProfile(index) {
 function downloadProfile() {
     const printContents = document.getElementById("printableProfile").innerHTML;
     const printWindow = window.open('', '', 'height=600,width=800');
-    printWindow.document.write('<html><head><title>হাবিব উল্যা ভূঁইয়া জামে মসজিদ দাতা প্রোফাইল</title><style>body{font-family:sans-serif;} table{width:100%; border-collapse:collapse;} th,td{border:1px solid #ddd; padding:8px; text-align:center;} .no-print{display:none;}</style></head><body>');
+    printWindow.document.write('<html><head><title>দাতা প্রোফাইল</title><style>body{font-family:sans-serif;} table{width:100%; border-collapse:collapse;} th,td{border:1px solid #ddd; padding:8px; text-align:center;} .no-print{display:none;} h3{color:#27ae60;}</style></head><body>');
     printWindow.document.write(printContents);
     printWindow.document.write('</body></html>');
     printWindow.document.close();
     printWindow.print();
 }
 
-async function editEntry(index) {
-    const p = mosqueData[index];
-    Swal.close();
+async function editEntry(idx) {
+    const p = mosqueData[idx]; Swal.close();
     const { value: v } = await Swal.fire({
-        title: 'তথ্য পরিবর্তন',
+        title: 'তথ্য এডিট',
         html: `
             <input id="en" class="swal2-input" placeholder="নাম" value="${p.name}">
             <input id="eh" class="swal2-input" placeholder="বাড়ি" value="${p.house}">
-            <input id="em" class="swal2-input" placeholder="মোবাইল" value="${p.mobile || ''}">
-            <input id="ew" class="swal2-input" placeholder="WhatsApp" value="${p.whatsapp || ''}">
-            <div style="margin-top:10px"><input type="checkbox" id="eex" ${p.isExpatriate ? 'checked' : ''}> প্রবাসী?</div>`,
-        showCancelButton: true,
-        confirmButtonText: 'সেভ',
-        preConfirm: () => [document.getElementById('en').value, document.getElementById('eh').value, document.getElementById('em').value, document.getElementById('ew').value, document.getElementById('eex').checked]
+            <input id="em" class="swal2-input" placeholder="মোবাইল" value="${p.mobile}">
+            <input id="ew" class="swal2-input" placeholder="WhatsApp" value="${p.whatsapp}">
+            <input id="eb" class="swal2-input" placeholder="ধার্য বেতন" type="number" value="${p.monthlyBeton}">
+            <div style="margin-top:10px">
+                <input type="checkbox" id="eex" ${p.isExpatriate ? 'checked' : ''}> <label for="eex">প্রবাসী?</label>
+            </div>`,
+        preConfirm: () => [
+            document.getElementById('en').value, 
+            document.getElementById('eh').value, 
+            document.getElementById('em').value, 
+            document.getElementById('ew').value, 
+            document.getElementById('eb').value,
+            document.getElementById('eex').checked
+        ]
     });
-    if (v) {
-        p.name = v[0]; p.house = v[1]; p.mobile = v[2]; p.whatsapp = v[3]; p.isExpatriate = v[4];
-        saveAndRender();
-        openProfile(index);
+    if (v) { 
+        Object.assign(p, {name:v[0], house:v[1], mobile:v[2], whatsapp:v[3], monthlyBeton:v[4], isExpatriate:v[5]}); 
+        saveAndRender(); 
+        openProfile(idx); 
     }
 }
 
-function saveAndRender() { localStorage.setItem('mosqueStorageV2', JSON.stringify(mosqueData)); renderTable(); }
-function backupData() { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(mosqueData)], {type: 'application/json'})); a.download = `HUB_Masjid_Backup.json`; a.click(); }
-function restoreData(e) { const r = new FileReader(); r.onload = (ev) => { mosqueData = JSON.parse(ev.target.result); saveAndRender(); }; r.readAsText(e.target.files[0]); }
+async function deleteEntry(idx) {
+    const r = await Swal.fire({ title: 'নিশ্চিত?', text: "ডিলিট করলে সব হিসাব মুছে যাবে!", icon: 'warning', showCancelButton: true, confirmButtonText: 'হ্যাঁ', cancelButtonText: 'না' });
+    if (r.isConfirmed) { mosqueData.splice(idx, 1); saveAndRender(); }
+}
 
-window.onload = () => renderTable();
+function searchFilter() {
+    let t = document.getElementById("searchInput").value.toLowerCase();
+    renderTable(mosqueData.filter(p => p.name.toLowerCase().includes(t) || p.house.toLowerCase().includes(t)));
+}
+
+function sortTable(type) {
+    let f = [...mosqueData];
+    if (type === 'name') f.sort((a,b) => a.name.localeCompare(b.name, 'bn'));
+    else if (type === 'expatriate') f = f.filter(p => p.isExpatriate);
+    renderTable(f);
+}
+
+function saveAndRender() { localStorage.setItem('mosqueStorageV2', JSON.stringify(mosqueData)); renderTable(); }
+function backupData() { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(mosqueData)], {type: 'application/json'})); a.download = `HUB_Backup.json`; a.click(); }
+function restoreData(e) { const r = new FileReader(); r.onload = (ev) => { mosqueData = JSON.parse(ev.target.result); saveAndRender(); }; r.readAsText(e.target.files[0]); }
+window.onload = () => { document.getElementById('yearLabel').innerText = toBanglaNum(currentYear); renderTable(); };
 </script>
 </body>
-</html>
+    </html>
